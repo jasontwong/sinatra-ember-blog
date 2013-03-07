@@ -1,0 +1,4 @@
+ember-blog
+==========
+
+Learning ember
