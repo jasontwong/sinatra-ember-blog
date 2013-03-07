@@ -1,0 +1,12 @@
+.container
+  %header
+    %nav
+      {{#linkTo "index"}}Home{{/linkTo}}
+      {{#linkTo "about"}}About{{/linkTo}}
+      {{#linkTo "favorites"}}Favorites{{/linkTo}}
+      {{#linkTo "posts"}}Posts{{/linkTo}}
+      {{#linkTo "posts.new"}}New Post{{/linkTo}}
+  %main
+    %h1 {{title}}
+    {{outlet}}
+  %footer
