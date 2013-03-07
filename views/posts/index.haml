@@ -1,1 +1,6 @@
-%h3 Posts index
+%h1 Posts index
+{{#each post in content}}
+%article
+  %h2 {{#linkTo posts.post post}}{{post.title}}{{/linkTo}}
+  %div.entry-excerpt {{post.excerpt}}
+{{/each}}
