@@ -1,6 +1,8 @@
 require 'sinatra/base'
 require 'haml'
 require 'json'
+require 'active_support/lazy_load_hooks'
+require 'active_support/core_ext/string'
 
 class App::Post < Sinatra::Base
 
@@ -32,6 +34,30 @@ class App::Post < Sinatra::Base
     {
       'posts' => @filtered_posts
     }.to_json
+  end
+
+  post '/posts', :xhr => true, :provides => :json do
+    params[:is_published] = !!params[:is_published]
+    params[:publish_date] = Date.today.strftime('%Y-%m-d') if params[:is_published]
+    params[:id] = @posts.count + 1
+    params[:slug] = params[:title].downcase.dasherize
+    @posts << params
+  end
+
+  put '/posts/:id', :xhr => true, :provides => :json do
+    @posts.collect! do |post|
+      if post[:id] == params[:id]
+        params[:is_published] = !!params[:is_published]
+        params[:publish_date] = Date.today.strftime('%Y-%m-d') if params[:is_published]
+        params[:slug] = params[:title].downcase.dasherize
+        post = params
+      end
+      post
+    end
+  end
+
+  delete '/posts/:id', :xhr => true, :provides => :json do
+    @posts.reject!{ |post| post[:id] == params[:id] }
   end
 
 end

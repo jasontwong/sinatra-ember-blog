@@ -53,9 +53,37 @@
         $(document).attr('title', title);
       }, 'docTitle')
     });
+    App.PostsNewController = Em.Controller.extend({
+      publishPost: function() {
+        console.log('publish');
+        var post = this.get('post');
+        post.isPublished = !post.isPublished;
+        this.set('post', post);
+      },
+      create: function() {
+        console.log(this.get('title'));
+      }
+    });
     // }}}
     // {{{ views
     App.SidebarView = Em.View.extend();
+    App.PostsNewView = Em.View.extend({
+      /*
+      post: null,
+      create: function() {
+        console.log(this.get('excerpt').get('value'));
+        var data = {
+          title: this.get('title').get('value'),
+          content: this.get('content').get('value'),
+          excerpt: this.get('excerpt').get('value'),
+          isPublished: this.get('excerpt').get('value')
+        };
+        this.post.createPost(data);
+      },
+      publishPost: function() {
+      }
+      */
+    });
     // }}}
     // {{{ stores
     App.Store = DS.Store.extend({

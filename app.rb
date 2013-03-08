@@ -49,7 +49,7 @@ class App < Sinatra::Base
     # hash { :name => template-name, :partial => partial }
     # or string (template-name and partial)
     @handlebars = [
-      'application', 'index', 'posts', 'posts/index', 'posts/post'
+      'application', 'index', 'posts', 'posts/index', 'posts/post', 'posts/new'
     ]
     haml :app
   end

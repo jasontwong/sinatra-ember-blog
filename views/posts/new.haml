@@ -1,0 +1,18 @@
+{{#view App.PostsNewView tagName="form" postBinding="this"}}
+%div{ :class => 'row' }
+  %div{ :class => 'field' }
+    {{view Ember.TextField type='text' valueBinding='App.PostsNewController.title' placeholder='Title' classBindings='text'}}
+%div{ :class => 'row' }
+  %div{ :class => 'field' }
+    {{view Ember.TextArea valueBinding='App.PostsNewController.content' placeholder='Content' classBindings='textarea'}}
+%div{ :class => 'row' }
+  %div{ :class => 'field' }
+    {{view Ember.TextArea valueBinding='App.PostsNewController.excerpt' placeholder='Excerpt' classBindings='textarea'}}
+%div{ :class => 'row' }
+  %div{ :class => 'field' }
+    %label 
+      {{view Ember.Checkbox checkedBinding='App.PostsNewController.publishPost' viewName='isPublished' classBindings='checkbox'}} Publish?
+%div{ :class => 'row' }
+  %div{ :class => 'field' }
+    <button {{action "create"}}>Create Post</button>
+{{/view}}
